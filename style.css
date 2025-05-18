@@ -22,12 +22,20 @@ body {
   box-shadow: 0 0 15px #00bfff;
   margin-bottom: 20px;
 }
+.choices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* ratakan ke kiri */
+  padding-left: 20px; /* beri sedikit ruang dari kiri */
+}
 .choices button {
+  width: 100%; /* tombol selebar container */
+  text-align: left; /* teks di dalam tombol rata kiri */
   background: #004080;
   color: white;
   border: none;
-  margin: 10px;
-  padding: 15px 30px;
+  margin: 8px 0; /* spasi vertikal antar tombol */
+  padding: 15px 20px;
   border-radius: 10px;
   font-size: 18px;
   cursor: pointer;
@@ -45,7 +53,7 @@ body {
 .locked {
   pointer-events: none;
 }
-#nextBtn {
+#nextBtn, #prevBtn {
   display: none;
   margin-top: 20px;
   padding: 10px 20px;
