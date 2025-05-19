@@ -26,9 +26,9 @@ const quiz = [
     options: [
       "Sel telur domba",
       "Sel mamalia lain",
-      "Kloning genetik",
-      "Kloning sel",
-      "Kloning individu"
+      "Sel jaringan kelenjar payudara domba",
+      "Sel darah domba",
+      "Sel sperma domba"
     ],
     answer: 2
   },
