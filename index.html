@@ -3,20 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kuis Kloning Domba Dolly</title>
+  <title>Kuis Biologi - Kloning Domba Dolly</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <h1 style="color: rgb(90, 55, 196);">KUIS INTERAKTIF</h1>
+    <h5 style="color: rgb(28, 17, 2);">Pemandu : Ir. Henny Rimawati Simatupang</h5>
+
     <div class="question-box">
       <h2 id="question">Memuat soal...</h2>
       <div class="choices" id="choices"></div>
-      <button id="nextBtn" onclick="nextQuestion()">Soal Berikutnya</button>
+      <div id="pagination" style="margin-top: 20px;"></div>
+      <!-- Tombol navigasi akan ditambahkan lewat JavaScript -->
     </div>
   </div>
-  <script src="script.js"></script>
+
+  <!-- Audio feedback -->
   <audio id="audioTrue" src="true.mp3" preload="auto"></audio>
   <audio id="audioFalse" src="false.mp3" preload="auto"></audio>
+
+  <!-- Script JS -->
+  <script src="script.js"></script>
 </body>
 </html>
