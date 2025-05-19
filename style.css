@@ -10,11 +10,13 @@ body {
   padding: 0;
   text-align: center;
 }
+
 .container {
   max-width: 800px;
   margin: auto;
   padding: 40px 20px;
 }
+
 .question-box {
   background: #003366;
   padding: 20px;
@@ -22,12 +24,14 @@ body {
   box-shadow: 0 0 15px #00bfff;
   margin-bottom: 20px;
 }
+
 .choices {
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* ratakan ke kiri */
   padding-left: 20px; /* beri sedikit ruang dari kiri */
 }
+
 .choices button {
   width: 100%; /* tombol selebar container */
   text-align: left; /* teks di dalam tombol rata kiri */
@@ -41,19 +45,25 @@ body {
   cursor: pointer;
   transition: background 0.3s ease;
 }
+
 .choices button:hover {
   background: #0059b3;
 }
+
 .choices button.correct {
   background: green;
 }
+
 .choices button.wrong {
   background: red;
 }
+
 .locked {
   pointer-events: none;
 }
-#nextBtn, #prevBtn {
+
+#nextBtn,
+#prevBtn {
   display: none;
   margin-top: 20px;
   padding: 10px 20px;
@@ -63,4 +73,47 @@ body {
   color: white;
   border: none;
   cursor: pointer;
+}
+
+/* Tambahan untuk pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  font-size: 16px;
+  background: #00bfff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.page-btn:hover {
+  background: #0099cc;
+}
+
+.page-btn.active {
+  background: #005f80;
+  background-color: #007BFF;
+  font-weight: bold;
+}
+
+.page-btn.wrong-page {
+  background-color: red !important;
+  color: white;
+}
+
+.page-btn.correct-page {
+  background-color: green !important;
+  color: white;
 }
