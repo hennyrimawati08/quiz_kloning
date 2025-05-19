@@ -8,7 +8,7 @@ const quiz = [
       "Kloning sel",
       "Kloning individu"
     ],
-    answer: 3
+    answer: 3 // "Kloning sel"
   },
   {
     question: "Dalam proses kloning, inti sel tubuh dari organisme yang ingin dikloning dipindahkan ke sel telur yang telah dikosongkan intinya. Proses ini disebut...?",
@@ -19,18 +19,18 @@ const quiz = [
       "Transgenesis",
       "Artificial insemination"
     ],
-    answer: 2
+    answer: 2 // "Somatic cell nuclear transfer (SCNT)"
   },
-    {
-    question: "Salah satu contoh kloning yang berhasil adalah kloning domba Dolly. Kloning pada domba Dolly menggunakan inti sel dari?",
+  {
+    question: "Salah satu contoh kloning yang berhasil adalah kloning domba Dolly. Kloning pada domba Dolly menggunakan inti sel dari...?",
     options: [
       "Sel telur domba",
       "Sel mamalia lain",
-      "Kloning genetik",
-      "Kloning sel",
-      "Kloning individu"
+      "Sel jaringan kelenjar payudara domba",
+      "Sel darah domba",
+      "Sel sperma domba"
     ],
-    answer: 2
+    answer: 2 // "Sel jaringan kelenjar payudara domba"
   },
   {
     question: "Manfaat kloning dalam bidang kedokteran antara lain adalah untuk menghasilkan sel-sel yang dapat digunakan untuk terapi. Kloning jenis ini disebut...?",
@@ -41,9 +41,9 @@ const quiz = [
       "Kloning sel",
       "Kloning individu"
     ],
-    answer: 1
+    answer: 1 // "Kloning terapeutik"
   },
-    {
+  {
     question: "Proses kloning DNA bertujuan untuk menghasilkan salinan gen tertentu. Salinan gen tersebut kemudian dapat digunakan untuk...?",
     options: [
       "Memperbaiki mutasi gen",
@@ -52,9 +52,10 @@ const quiz = [
       "Mempercepat pertumbuhan sel",
       "Menguji kepekaan gen terhadap obat"
     ],
-    answer: 1
+    answer: 1 // "Menghasilkan produk farmasi"
   },
 ];
+
 
 let currentQuestion = 0;
 
