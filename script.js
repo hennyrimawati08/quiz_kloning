@@ -8,7 +8,7 @@ const quiz = [
       "Kloning sel",
       "Kloning individu"
     ],
-    answer: 3 // "Kloning sel"
+    answer: 3
   },
   {
     question: "Dalam proses kloning, inti sel tubuh dari organisme yang ingin dikloning dipindahkan ke sel telur yang telah dikosongkan intinya. Proses ini disebut...?",
@@ -19,18 +19,18 @@ const quiz = [
       "Transgenesis",
       "Artificial insemination"
     ],
-    answer: 2 // "Somatic cell nuclear transfer (SCNT)"
+    answer: 2
   },
   {
-    question: "Salah satu contoh kloning yang berhasil adalah kloning domba Dolly. Kloning pada domba Dolly menggunakan inti sel dari...?",
+    question: "Salah satu contoh kloning yang berhasil adalah kloning domba Dolly. Kloning pada domba Dolly menggunakan inti sel dari?",
     options: [
       "Sel telur domba",
       "Sel mamalia lain",
-      "Sel jaringan kelenjar payudara domba",
-      "Sel darah domba",
-      "Sel sperma domba"
+      "Kloning genetik",
+      "Kloning sel",
+      "Kloning individu"
     ],
-    answer: 2 // "Sel jaringan kelenjar payudara domba"
+    answer: 2
   },
   {
     question: "Manfaat kloning dalam bidang kedokteran antara lain adalah untuk menghasilkan sel-sel yang dapat digunakan untuk terapi. Kloning jenis ini disebut...?",
@@ -41,7 +41,7 @@ const quiz = [
       "Kloning sel",
       "Kloning individu"
     ],
-    answer: 1 // "Kloning terapeutik"
+    answer: 1
   },
   {
     question: "Proses kloning DNA bertujuan untuk menghasilkan salinan gen tertentu. Salinan gen tersebut kemudian dapat digunakan untuk...?",
@@ -52,12 +52,13 @@ const quiz = [
       "Mempercepat pertumbuhan sel",
       "Menguji kepekaan gen terhadap obat"
     ],
-    answer: 1 // "Menghasilkan produk farmasi"
-  },
+    answer: 1
+  }
 ];
 
-
+let answerStatus = Array(quiz.length).fill(null); // 'correct', 'wrong', or null
 let currentQuestion = 0;
+
 
 function loadQuestion() {
   const q = quiz[currentQuestion];
@@ -66,7 +67,6 @@ function loadQuestion() {
   choicesDiv.innerHTML = "";
 
   document.getElementById("nextBtn").style.display = "none";
-  document.getElementById("prevBtn").style.display = currentQuestion > 0 ? "inline-block" : "none";
 
   q.options.forEach((option, i) => {
     const btn = document.createElement("button");
@@ -74,6 +74,8 @@ function loadQuestion() {
     btn.onclick = () => selectAnswer(btn, i);
     choicesDiv.appendChild(btn);
   });
+
+  renderPagination();
 }
 
 function selectAnswer(button, index) {
@@ -85,17 +87,21 @@ function selectAnswer(button, index) {
 
   if (index === quiz[currentQuestion].answer) {
     button.classList.add("correct");
+    answerStatus[currentQuestion] = 'correct';
     audioTrue.currentTime = 0;
     audioTrue.play();
   } else {
     button.classList.add("wrong");
     buttons[quiz[currentQuestion].answer].classList.add("correct");
+    answerStatus[currentQuestion] = 'wrong';
     audioFalse.currentTime = 0;
     audioFalse.play();
   }
 
   document.getElementById("nextBtn").style.display = currentQuestion < quiz.length - 1 ? "inline-block" : "none";
+  renderPagination(); // tambahkan ini untuk memperbarui warna pagination
 }
+
 
 function nextQuestion() {
   if (currentQuestion < quiz.length - 1) {
@@ -104,42 +110,57 @@ function nextQuestion() {
   }
 }
 
-function prevQuestion() {
-  if (currentQuestion > 0) {
-    currentQuestion--;
-    loadQuestion();
+function renderPagination() {
+  const paginationDiv = document.getElementById("pagination");
+  if (!paginationDiv) return;
+
+  paginationDiv.innerHTML = "";
+
+  for (let i = 0; i < quiz.length; i++) {
+    const pageBtn = document.createElement("button");
+    pageBtn.innerText = i + 1;
+    pageBtn.className = "page-btn";
+    pageBtn.style.marginRight = "8px";
+
+    if (i === currentQuestion) pageBtn.classList.add("active");
+    if (answerStatus[i] === 'wrong') pageBtn.classList.add("wrong-page");
+    if (answerStatus[i] === 'correct') pageBtn.classList.add("correct-page");
+
+    pageBtn.onclick = () => {
+      currentQuestion = i;
+      loadQuestion();
+    };
+    paginationDiv.appendChild(pageBtn);
   }
 }
 
-// Tambahkan tombol prev ke dalam DOM jika belum ada
-window.onload = () => {
-  const navBtns = document.getElementById("navButtons");
-  if (!navBtns) {
-    const container = document.querySelector(".question-box");
 
+window.onload = () => {
+  const container = document.querySelector(".question-box");
+
+  let nextBtn = document.getElementById("nextBtn");
+  if (!nextBtn) {
     const btnContainer = document.createElement("div");
     btnContainer.id = "navButtons";
     btnContainer.style.marginTop = "20px";
 
-    const prevBtn = document.createElement("button");
-    prevBtn.id = "prevBtn";
-    prevBtn.innerText = "Soal Sebelumnya";
-    prevBtn.onclick = prevQuestion;
-    prevBtn.style.display = "none";
-    prevBtn.style.marginRight = "10px";
-    prevBtn.style.padding = "10px 20px";
-    prevBtn.style.fontSize = "18px";
-    prevBtn.style.borderRadius = "8px";
-    prevBtn.style.background = "#888";
-    prevBtn.style.color = "white";
-    prevBtn.style.border = "none";
-    prevBtn.style.cursor = "pointer";
+    nextBtn = document.createElement("button");
+    nextBtn.id = "nextBtn";
+    nextBtn.innerText = "Soal Berikutnya";
+    nextBtn.onclick = nextQuestion;
+    nextBtn.style.padding = "10px 20px";
+    nextBtn.style.fontSize = "18px";
+    nextBtn.style.borderRadius = "8px";
+    nextBtn.style.background = "#007BFF";
+    nextBtn.style.color = "white";
+    nextBtn.style.border = "none";
+    nextBtn.style.cursor = "pointer";
+    nextBtn.style.display = "none";
 
-    const nextBtn = document.getElementById("nextBtn");
-    btnContainer.appendChild(prevBtn);
     btnContainer.appendChild(nextBtn);
     container.appendChild(btnContainer);
   }
 
+  renderPagination();
   loadQuestion();
 };
